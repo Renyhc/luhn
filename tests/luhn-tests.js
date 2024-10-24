@@ -2,10 +2,9 @@
 // http://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm
 
 import should from "should";
-import luhn, { ValidatorFactory } from "../dist/luhn.js";
+import { luhn, verhoeff } from "../dist/luhn.js";
 
 const _VALID_TEST_NUMBER = "4012111111111111";
-const verhoeffValidator = ValidatorFactory.getValidator('verhoeff');
 
 describe("Luhn Validation", function(){
 
@@ -180,24 +179,24 @@ describe("Luhn Validation", function(){
 describe("Verhoeff Validation", function(){
     describe("Basic Requirements", function(){
         it("should trim the number", function(){
-            verhoeffValidator.validate("123 456").should.be.true;
+            verhoeff("123 456").should.be.true;
         });
 
         it("should only allow numeric number strings", function(){
-            verhoeffValidator.validate("123ABC").should.be.false;
+            verhoeff("123ABC").should.be.false;
         });
     });
 
     describe("Known Valid Numbers", function(){
         it("should validate correct numbers", function(){
-            verhoeffValidator.validate("142857").should.be.true;
-            verhoeffValidator.validate("123452").should.be.true;
-            verhoeffValidator.validate("8473625").should.be.true;
+            verhoeff("142857").should.be.true;
+            verhoeff("123452").should.be.true;
+            verhoeff("8473625").should.be.true;
         });
 
         it("should reject incorrect numbers", function(){
-            verhoeffValidator.validate("142858").should.be.false;
-            verhoeffValidator.validate("123451").should.be.false;
+            verhoeff("142858").should.be.false;
+            verhoeff("123451").should.be.false;
         });
     });
 
@@ -205,33 +204,33 @@ describe("Verhoeff Validation", function(){
         const validNumber = "2363";
         
         it("should detect single digit errors", function(){
-            verhoeffValidator.validate("2364").should.be.false;
-            verhoeffValidator.validate("2463").should.be.false;
+            verhoeff("2364").should.be.false;
+            verhoeff("2463").should.be.false;
         });
 
         it("should detect adjacent transpositions", function(){
-            verhoeffValidator.validate("2336").should.be.false;
-            verhoeffValidator.validate("2636").should.be.false;
+            verhoeff("2336").should.be.false;
+            verhoeff("2636").should.be.false;
         });
 
         it("should detect twin errors", function(){
-            verhoeffValidator.validate("2233").should.be.false;
-            verhoeffValidator.validate("3322").should.be.false;
+            verhoeff("2233").should.be.false;
+            verhoeff("3322").should.be.false;
         });
     });
 
     describe("Edge Cases", function(){
         it("should handle empty string", function(){
-            verhoeffValidator.validate("").should.be.false;
+            verhoeff("").should.be.false;
         });
 
         it("should handle single digits", function(){
-            verhoeffValidator.validate("0").should.be.false;
+            verhoeff("0").should.be.false;
         });
 
         it("should handle sequences of zeros", function(){
-            verhoeffValidator.validate("000").should.be.false;
-            verhoeffValidator.validate("0000").should.be.false;
+            verhoeff("000").should.be.false;
+            verhoeff("0000").should.be.false;
         });
     });
 });
