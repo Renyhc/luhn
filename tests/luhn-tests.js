@@ -179,7 +179,7 @@ describe("Luhn Validation", function(){
 describe("Verhoeff Validation", function(){
     describe("Basic Requirements", function(){
         it("should trim the number", function(){
-            verhoeff("123 456").should.be.true;
+            verhoeff("142 857").should.be.true;
         });
 
         it("should only allow numeric number strings", function(){
