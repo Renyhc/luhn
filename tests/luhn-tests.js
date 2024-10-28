@@ -186,7 +186,7 @@ describe("Validation Tests", function(){
 		});
 
 		it("should return false for a number with odd sum of digits", function(){
-			validate("1234", "sumEven").should.be.false;
+			validate("12345", "sumEven").should.be.false;
 		});
 
 		it("should return true for a number with zero sum", function(){
