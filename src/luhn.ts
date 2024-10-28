@@ -1,45 +1,47 @@
-export default function validate(stringToValidate: string) {
-  let trimmed = stringToValidate.replace(/[\s]/g, ""),
-    length: number = trimmed.length,
-    odd: boolean = false,
-    total: number = 0,
-    calc: number,
-    calc2: number;
 
-  if (!/^[0-9]+$/.test(trimmed)) {
-    return false;
-  }
+// Importing the existing luhn and verhoeff algorithm modules
+import luhnAlgorithm from './luhnAlgorithm';
+import verhoeffAlgorithm from './verhoeffAlgorithm';
 
-  for (let i = length; i > 0; i--) {
-    calc = parseInt(trimmed.charAt(i - 1));
-    if (!odd) {
-      total += calc;
-    } else {
-      calc2 = calc * 2;
+// Interface for Validation Algorithms
+interface ValidationAlgorithm {
+  (input: string): boolean;
+}
 
-      switch (calc2) {
-        case 10:
-          calc2 = 1;
-          break;
-        case 12:
-          calc2 = 3;
-          break;
-        case 14:
-          calc2 = 5;
-          break;
-        case 16:
-          calc2 = 7;
-          break;
-        case 18:
-          calc2 = 9;
-          break;
-        default:
-          calc2 = calc2;
-      }
-      total += calc2;
-    }
-    odd = !odd;
-  }
+// Existing Luhn Algorithm
+const luhn: ValidationAlgorithm = luhnAlgorithm;
 
-  return total !== 0 && total % 10 === 0;
+// Existing Verhoeff Algorithm
+const verhoeff: ValidationAlgorithm = verhoeffAlgorithm;
+
+// Configuration for selecting the algorithm
+enum AlgorithmType {
+  LUHN = 'luhn',
+  VERHOEFF = 'verhoeff',
+}
+
+interface ValidationConfig {
+  algorithm: AlgorithmType;
+}
+
+// Default configuration
+let config: ValidationConfig = {
+  algorithm: AlgorithmType.LUHN,
 };
+
+// Function to set the validation configuration
+export function setValidationConfig(newConfig: ValidationConfig) {
+  config = newConfig;
+}
+
+// Main validation function that uses the configured algorithm
+export function validate(input: string): boolean {
+  switch (config.algorithm) {
+    case AlgorithmType.LUHN:
+      return luhn(input);
+    case AlgorithmType.VERHOEFF:
+      return verhoeff(input);
+    default:
+      throw new Error('Unsupported validation algorithm');
+  }
+}
