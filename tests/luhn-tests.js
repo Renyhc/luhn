@@ -139,7 +139,7 @@ describe("Luhn Validation", function(){
 				var validCount = 0;
 				for (var i = 0; i < 10; i++) {
 					var number = example + '' + i;
-					if (luhn(number)) {
+					if (validate(number, "luhn")) {
 						validCount++;
 					}
 				}
