@@ -184,18 +184,30 @@ describe("Luhn Validation", function(){
 		  validate("12345", "new").should.be.false;
 		});
 	  });
-	
+
 	  describe("Complex Algorithm Validation", function(){
 		it("should return true for palindromes with prime ASCII sum", function(){
-		  validate("aba", "complex").should.be.true; // 'a' + 'b' + 'a' = 97 + 98 + 97 = 292 (prime)
+		  validate("bab", "complex").should.be.true; // 'a' + 'c' + 'e' + 'c' + 'a' = 97 + 99 + 101 + 99 + 97 = 493 (prime)
 		});
-	
+	  
 		it("should return false for non-palindromes", function(){
 		  validate("abc", "complex").should.be.false;
 		});
-	
+	  
 		it("should return false for palindromes with non-prime ASCII sum", function(){
 		  validate("aa", "complex").should.be.false; // 'a' + 'a' = 97 + 97 = 194 (not prime)
+		});
+	  
+		it("should return false for palindromes with non-prime ASCII sum (longer string)", function(){
+		  validate("abcdcba", "complex").should.be.false; // 'a' + 'b' + 'c' + 'd' + 'c' + 'b' + 'a' = 97 + 98 + 99 + 100 + 99 + 98 + 97 = 688 (not prime)
+		});
+	  
+		it("should return true for single character palindrome", function(){
+		  validate("a", "complex").should.be.true; // 'a' = 97 (prime)
+		});
+	  
+		it("should return false for empty string", function(){
+		  validate("", "complex").should.be.false;
 		});
 	  });
 });
