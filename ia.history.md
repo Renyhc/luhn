@@ -9,6 +9,7 @@ Hernandez](mailto:rhernandez@primary.com.ar)
 **Consigna**: [luhn-customvalidate]{.mark}
 
 **Branch utilizado:**
+
 [https://github.com/Renyhc/luhn/tree/luhn-customvalidate-copilot-codex](https://github.com/Renyhc/luhn/tree/luhn-customvalidate-copilot-codex)
 
 **Lenguaje**: Tyscript
@@ -757,6 +758,7 @@ Luhn Validation
 Basic Requirements
 
 ✔ should trim the number
+
 ✔ should only allow numeric number strings
 
 Happy Path
@@ -766,64 +768,99 @@ Happy Path
 Test Credit Card Numbers
 
 ✔ should pass America Express - 378282246310005
+
 ✔ should pass America Express - 371449635398431
+
 ✔ should pass America Express Corporate- 378734493671000
+
 ✔ should pass Australian BankCard - 5610591081018250
+
 ✔ should pass Diners Club - 30569309025904
+
 ✔ should pass Diners Club - 38520000023237
+
 ✔ should pass Discover - 6011111111111117
+
 ✔ should pass Discover - 6011000990139424
+
 ✔ should pass JCB - 3530111333300000
+
 ✔ should pass JCB - 3566002020360505
+
 ✔ should pass MasterCard - 5555555555554444
+
 ✔ should pass MasterCard - 5105105105105100
+
 ✔ should pass Visa - 4111111111111111
+
 ✔ should pass Visa - 4012888888881881
+
 ✔ should pass Visa - 4222222222222
 
 Test Credit Card Numbers with Spaces
 
 ✔ should pass Visa - 4111 1111 1111 1111
+
 ✔ should pass Visa - 4012 8888 8888 1881
+
 ✔ should pass American Express - 3782 822463 10005
 
 Random large number examples
 
 ✔ should have exactly one valid checksum digit after 948204694057049730
+
 ✔ should have exactly one valid checksum digit after
 61441632272725062558
+
 ✔ should have exactly one valid checksum digit after
 83763347848592781938
+
 ✔ should have exactly one valid checksum digit after 89814917543230184
+
 ✔ should have exactly one valid checksum digit after 592680036837395284
+
 ✔ should have exactly one valid checksum digit after
 66833862066008727982
+
 ✔ should have exactly one valid checksum digit after 88579314260431677
+
 ✔ should have exactly one valid checksum digit after 04414623010089936
+
 ✔ should have exactly one valid checksum digit after 025796161620960818
+
 ✔ should have exactly one valid checksum digit after 06681556420563667
 
 User Submitted Issues
 
 ✔ should return false for number of zero.
+
 ✔ should return false for number of 4 zeroes.
+
 ✔ should return false for number of 16 zeroes.
+
 ✔ should return false if digits add to 0.
+
 ✔ should return false if passed an empty string
 
 New Algorithm Validation
 
 ✔ should return true for even length strings
+
 ✔ should return false for odd length strings
 
 Complex Algorithm Validation
 
 ✔ should return true for palindromes with prime ASCII sum
+
 ✔ should return false for non-palindromes
+
 ✔ should return false for palindromes with non-prime ASCII sum
+
 ✔ should return false for palindromes with non-prime ASCII sum (longer
 string)
+
 ✔ should return true for single character palindrome
+
 ✔ should return false for empty string
 
 44 passing (27ms)
